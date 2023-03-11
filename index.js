@@ -1,5 +1,4 @@
 const express = require('express');
-const port = 3000;
 const app = express();
 const bodyParser = require('body-parser');
 
@@ -8,17 +7,9 @@ const { createServer } = require("http");
 const { Server } = require("socket.io");
 
 const httpServer = createServer();
-
-
 const io = new Server(httpServer, {});
 
-
-//
-
-
 app.use(bodyParser.json());
-
-
 app.get('/', (req, res) => {
     res.send("Hello World");
 })
@@ -44,13 +35,9 @@ io.on("connection", (socket) => {
 });
 
 
-httpServer.listen(3001);
-
-// ...
-app.listen(port, () => {
-    console.log("Server is running on port " + port);
-})
-
+httpServer.listen(3000, () => {
+  console.log('listening on:3000');
+});
 
 
 // 6353f0c6a52cde6dafae64d2634c1d60f09a4f3ff40be517
