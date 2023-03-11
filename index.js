@@ -1,19 +1,13 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
-
-
-const { createServer } = require("http");
+const http = require('http');
+const server = http.createServer(app);
 const { Server } = require("socket.io");
+const io = new Server(server);
 
-const httpServer = createServer();
-const io = new Server(httpServer, {});
-
-app.use(bodyParser.json());
 app.get('/', (req, res) => {
-    res.send("Hello World");
-})
-
+  res.send('<h1>Hello world</h1>');
+});
 
 io.on("connection", (socket) => {
 
@@ -34,11 +28,6 @@ io.on("connection", (socket) => {
     });
 });
 
-
-httpServer.listen(3000, () => {
-  console.log('listening on:3000');
+server.listen(3000, () => {
+  console.log('listening on *:3000');
 });
-
-
-// 6353f0c6a52cde6dafae64d2634c1d60f09a4f3ff40be517
-// 6353f0c6a52cde6dafae64d2634c1d60f09a4f3ff40be517
